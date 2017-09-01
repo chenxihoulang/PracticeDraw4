@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.support.annotation.Nullable;
@@ -38,7 +39,23 @@ public class Practice10MatrixSkewView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
+        /**
+         * float sx:将画布在x方向上倾斜相应的角度，sx为倾斜角度的tan值；
+         float sy:将画布在y轴方向上倾斜相应的角度，sy为倾斜角度的tan值；
+         注意，这里全是倾斜角度的tan值，比如我们打算在X轴方向上倾斜45度，tan45=1
+         */
+        canvas.save();
+        Matrix matrix = new Matrix();
+        matrix.setSkew(0, 0.5F, point1.x + bitmap.getWidth() / 2, point1.y + bitmap.getHeight() / 2);
+        canvas.concat(matrix);
         canvas.drawBitmap(bitmap, point1.x, point1.y, paint);
+        canvas.restore();
+
+        canvas.save();
+        matrix.reset();
+        matrix.setSkew(-0.5F, 0, point2.x + bitmap.getWidth() / 2, point2.y + bitmap.getHeight() / 2);
+        canvas.concat(matrix);
         canvas.drawBitmap(bitmap, point2.x, point2.y, paint);
+        canvas.restore();
     }
 }

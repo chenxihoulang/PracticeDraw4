@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HenCoder 绘制 4</string>
+    <string name="app_name">绘制 4</string>
     <string name="title_clip_rect">clipRect()</string>
     <string name="title_clip_path">clipPath()</string>
     <string name="title_translate">translate()</string>
